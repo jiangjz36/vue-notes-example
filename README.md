@@ -28,6 +28,24 @@
 	- git add . // 添加所有修改
 	- git commit '准备vue范例' // 提交
 	- git push origin master // 提交到远程
+	
+## 前端存储数据
+1. sessionStorage
+2. 第三方工具 lokijs
+```
+const db = new loki('notes', {
+	autoload: true, // 自動加載
+	autoloadCallback: databaseInit, // 初始化載入回調
+	autosave: true, // 自動保存
+	autosaveInterval: 3000 // 自動保存的時間間隔
+	});
 
-
+function databaseInit() {
+	const notes = db.getCollection('notes'); // 獲取數據庫集合
+	if( notes === null) { // 如果集合不存在，則新建
+		db.addCollection('notes');
+	}
+} 
+```
+	- 之後就可以在瀏覽器控制檯的localStorage 中看到 notes 這條數據了
 	
